@@ -9,21 +9,94 @@ const tasksByColumn = computed(() => taskStore.tasksByColumn);
 
 const showConfirmDialog = ref(false);
 const taskToDelete = ref(null);
-
+const draggedTask = ref(null);
 
 // Drag and drop functionality
 const dragStart = (e, task) => {
-    e.dataTransfer.setData('taskId', task.id);
+    draggedTask.value = task;
+    if (e.type === 'dragstart') {
+        e.dataTransfer.setData('taskId', task.id);
+    }
+};
+
+const dragEnd = () => {
+    draggedTask.value = null;
 };
 
 const dragOver = (e) => {
     e.preventDefault();
+    if (e.type === 'dragover') {
+        e.dataTransfer.dropEffect = 'move';
+    }
+};
+
+const dragEnter = (e) => {
+    e.preventDefault();
+    if (e.currentTarget.classList) {
+        e.currentTarget.classList.add('drag-over');
+    }
+};
+
+const dragLeave = (e) => {
+    e.preventDefault();
+    if (e.currentTarget.classList) {
+        e.currentTarget.classList.remove('drag-over');
+    }
 };
 
 const drop = (e, columnId) => {
     e.preventDefault();
-    const taskId = parseInt(e.dataTransfer.getData('taskId'));
-    taskStore.updateTaskColumn(taskId, columnId);
+    if (e.currentTarget.classList) {
+        e.currentTarget.classList.remove('drag-over');
+    }
+
+    const taskId = e.type === 'drop'
+        ? parseInt(e.dataTransfer.getData('taskId'))
+        : draggedTask.value?.id;
+
+    if (taskId) {
+        taskStore.updateTaskColumn(taskId, columnId);
+    }
+};
+
+// Touch event handlers
+const touchStart = (e, task) => {
+    draggedTask.value = task;
+    e.currentTarget.classList.add('dragging');
+};
+
+const touchMove = (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (target) {
+        const column = target.closest('.kanban-column');
+        if (column) {
+            column.classList.add('drag-over');
+        }
+    }
+};
+
+const touchEnd = (e) => {
+    e.preventDefault();
+    const touch = e.changedTouches[0];
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (target && draggedTask.value) {
+        const column = target.closest('.kanban-column');
+        if (column) {
+            const columnId = column.getAttribute('data-column-id');
+            if (columnId) {
+                taskStore.updateTaskColumn(draggedTask.value.id, columnId);
+            }
+        }
+    }
+
+    // Clean up
+    document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    document.querySelectorAll('.dragging').forEach(el => el.classList.remove('dragging'));
+    draggedTask.value = null;
 };
 
 const handleDeleteClick = (task) => {
@@ -48,13 +121,15 @@ const handleCancelDelete = () => {
         <div class="col-12 overflow-auto">
             <!-- Kanban Board -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-0 gap-4">
-                <div v-for="column in columns" :key="column.id" class="bg-surface-section p-4 rounded-lg"
-                    @dragover="dragOver" @drop="drop($event, column.id)">
+                <div v-for="column in columns" :key="column.id" class="bg-surface-section p-4 rounded-lg kanban-column"
+                    :data-column-id="column.id" @dragover="dragOver" @dragenter="dragEnter" @dragleave="dragLeave"
+                    @drop="drop($event, column.id)">
                     <h6 class="text-lg font-semibold mb-4">{{ column.title }}</h6>
                     <div class="space-y-3 p-2 min-h-[300px]" :style="{ backgroundColor: 'var(--surface-ground)' }">
                         <div v-for="task in tasksByColumn[column.id]" :key="task.id"
-                            class="bg-surface-card p-3 rounded-lg border border-surface-border cursor-move"
-                            draggable="true" @dragstart="dragStart($event, task)"
+                            class="bg-surface-card p-3 rounded-lg border border-surface-border cursor-move task-card"
+                            draggable="true" @dragstart="dragStart($event, task)" @dragend="dragEnd"
+                            @touchstart="touchStart($event, task)" @touchmove="touchMove" @touchend="touchEnd"
                             @click="taskStore.openEditTaskDialog(task)">
                             <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
                                 <h6 class="m-0 text-base sm:text-lg break-words">{{ task.title }}</h6>
@@ -103,9 +178,19 @@ const handleCancelDelete = () => {
     color: var(--surface-500);
 }
 
+/* Drag and drop styles */
+.drag-over {
+    background-color: var(--surface-hover);
+    border: 2px dashed var(--primary-color);
+}
+
+.dragging {
+    opacity: 0.5;
+    transform: scale(1.02);
+}
+
 /* Responsive styles */
 @media screen and (max-width: 768px) {
-
     .bg-surface-section {
         margin-bottom: 1rem;
     }
@@ -113,11 +198,15 @@ const handleCancelDelete = () => {
     .space-y-3 {
         min-height: 200px;
     }
+
+    .task-card {
+        touch-action: none;
+        /* Prevents scrolling while dragging */
+    }
 }
 
 /* Ensure proper spacing on very small screens */
 @media screen and (max-width: 480px) {
-
     .gap-2 {
         gap: 0.5rem;
     }
