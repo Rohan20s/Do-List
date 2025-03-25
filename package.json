@@ -1,5 +1,5 @@
 {
-    "name": "sakai-vue",
+    "name": "do-list",
     "version": "4.3.0",
     "scripts": {
         "dev": "vite",
@@ -10,10 +10,13 @@
     "dependencies": {
         "@primeuix/themes": "^1.0.0",
         "chart.js": "3.3.2",
+        "just-kanban": "^1.0.4",
+        "pinia": "^3.0.1",
         "primeicons": "^7.0.0",
         "primevue": "^4.3.1",
         "tailwindcss-primeui": "^0.5.0",
         "vue": "^3.4.34",
+        "vue-kanban": "^1.8.0",
         "vue-router": "^4.4.0"
     },
     "devDependencies": {

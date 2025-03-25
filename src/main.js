@@ -1,16 +1,17 @@
+import '@/assets/styles.scss';
+import Aura from '@primeuix/themes/aura';
+import { createPinia } from 'pinia';
+import PrimeVue from 'primevue/config';
+import ConfirmationService from 'primevue/confirmationservice';
+import ToastService from 'primevue/toastservice';
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 
-import Aura from '@primeuix/themes/aura';
-import PrimeVue from 'primevue/config';
-import ConfirmationService from 'primevue/confirmationservice';
-import ToastService from 'primevue/toastservice';
-
-import '@/assets/styles.scss';
-
 const app = createApp(App);
+const pinia = createPinia();
 
+app.use(pinia);
 app.use(router);
 app.use(PrimeVue, {
     theme: {
@@ -18,7 +19,8 @@ app.use(PrimeVue, {
         options: {
             darkModeSelector: '.app-dark'
         }
-    }
+    },
+    ripple: true
 });
 app.use(ToastService);
 app.use(ConfirmationService);

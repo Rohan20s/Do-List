@@ -1,22 +1,23 @@
 <script setup>
-import BestSellingWidget from '@/components/dashboard/BestSellingWidget.vue';
-import NotificationsWidget from '@/components/dashboard/NotificationsWidget.vue';
-import RecentSalesWidget from '@/components/dashboard/RecentSalesWidget.vue';
-import RevenueStreamWidget from '@/components/dashboard/RevenueStreamWidget.vue';
-import StatsWidget from '@/components/dashboard/StatsWidget.vue';
+import ProfileWidget from '@/components/dashboard/ProfileWidget.vue';
+import TaskHighlightsWidget from '@/components/dashboard/TaskHighlightsWidget.vue';
+import TaskWidget from '@/components/dashboard/TaskWidget.vue';
 </script>
 
 <template>
     <div class="grid grid-cols-12 gap-8">
-        <StatsWidget />
+        <!-- <StatsWidget /> -->
 
         <div class="col-span-12 xl:col-span-6">
-            <RecentSalesWidget />
-            <BestSellingWidget />
+            <!-- <RecentSalesWidget /> -->
+            <ProfileWidget />
         </div>
         <div class="col-span-12 xl:col-span-6">
-            <RevenueStreamWidget />
-            <NotificationsWidget />
+            <TaskHighlightsWidget />
+        </div>
+        <div class="col-span-12 xl:col-span-12">
+            <TaskWidget />
+            <!-- <NotificationsWidget /> -->
         </div>
     </div>
 </template>
