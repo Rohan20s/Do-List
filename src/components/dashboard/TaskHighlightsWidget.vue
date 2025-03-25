@@ -55,11 +55,7 @@ const taskStats = computed(() => {
     <div class="card">
         <div class="flex justify-between items-center mb-6">
             <div class="font-semibold text-xl">Task Completion</div>
-            <div>
-                <Button icon="pi pi-ellipsis-v" class="p-button-text p-button-plain p-button-rounded"
-                    @click="$refs.menu.toggle($event)"></Button>
-                <Menu ref="menu" popup :model="items" class="!min-w-40"></Menu>
-            </div>
+
         </div>
 
         <ul class="list-none p-0 m-0">
@@ -75,7 +71,7 @@ const taskStats = computed(() => {
                         <div class="bg-pink-500 h-full" :style="{ width: taskStats.highPriority.completed + '%' }">
                         </div>
                     </div>
-                    <span class="text-pink-500 ml-4 font-medium">%{{ taskStats.highPriority.completed }}</span>
+                    <span class="text-pink-500 ml-4 font-medium min-w-10">%{{ taskStats.highPriority.completed }}</span>
                 </div>
             </li>
             <li class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -90,7 +86,8 @@ const taskStats = computed(() => {
                         <div class="bg-green-500 h-full" :style="{ width: taskStats.mediumPriority.completed + '%' }">
                         </div>
                     </div>
-                    <span class="text-primary ml-4 font-medium">%{{ taskStats.mediumPriority.completed }}</span>
+                    <span class="text-primary ml-4 font-medium min-w-10">%{{ taskStats.mediumPriority.completed
+                        }}</span>
                 </div>
             </li>
             <li class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -103,7 +100,7 @@ const taskStats = computed(() => {
                         style="height: 8px">
                         <div class="bg-teal-500 h-full" :style="{ width: taskStats.lowPriority.completed + '%' }"></div>
                     </div>
-                    <span class="text-teal-500 ml-4 font-medium">%{{ taskStats.lowPriority.completed }}</span>
+                    <span class="text-teal-500 ml-4 font-medium min-w-10">%{{ taskStats.lowPriority.completed }}</span>
                 </div>
             </li>
         </ul>

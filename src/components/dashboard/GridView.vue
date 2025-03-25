@@ -38,8 +38,8 @@ const filteredTasks = computed(() => taskStore.filteredTasks);
                 </template>
 
                 <div class="px-4 mt-4" @click="taskStore.openEditTaskDialog(task)">
-                    <p class="text-surface-600 text-lg">{{ task.description }}</p>
-                    <div class="mt-2 text-sm text-surface-500">
+                    <p class="text-base sm:text-lg mb-4 break-words">{{ task.description }}</p>
+                    <div class="mt-2 text-sm">
                         Due: {{ taskStore.formatDate(task.dueDate) }}
                     </div>
                 </div>

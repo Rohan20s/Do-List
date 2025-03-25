@@ -1,4 +1,5 @@
 <script setup>
+import DemoWidget from '@/components/dashboard/DemoWidget.vue';
 import ProfileWidget from '@/components/dashboard/ProfileWidget.vue';
 import TaskHighlightsWidget from '@/components/dashboard/TaskHighlightsWidget.vue';
 import TaskWidget from '@/components/dashboard/TaskWidget.vue';
@@ -11,6 +12,8 @@ import TaskWidget from '@/components/dashboard/TaskWidget.vue';
         <div class="col-span-12 xl:col-span-6">
             <!-- <RecentSalesWidget /> -->
             <ProfileWidget />
+            <DemoWidget />
+
         </div>
         <div class="col-span-12 xl:col-span-6">
             <TaskHighlightsWidget />

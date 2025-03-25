@@ -44,11 +44,10 @@ const handleCancelDelete = () => {
 </script>
 
 <template>
-    <div class="grid">
+    <div class="grid p-0">
         <div class="col-12 overflow-auto">
-
             <!-- Kanban Board -->
-            <div class="grid grid-cols-3 gap-4 min-w-[600px]">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-0 gap-4">
                 <div v-for="column in columns" :key="column.id" class="bg-surface-section p-4 rounded-lg"
                     @dragover="dragOver" @drop="drop($event, column.id)">
                     <h6 class="text-lg font-semibold mb-4">{{ column.title }}</h6>
@@ -57,16 +56,16 @@ const handleCancelDelete = () => {
                             class="bg-surface-card p-3 rounded-lg border border-surface-border cursor-move"
                             draggable="true" @dragstart="dragStart($event, task)"
                             @click="taskStore.openEditTaskDialog(task)">
-                            <div class="flex justify-between items-start mb-2">
-                                <h6 class="m-0">{{ task.title }}</h6>
-                                <div class="flex gap-2">
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-2">
+                                <h6 class="m-0 text-base sm:text-lg break-words">{{ task.title }}</h6>
+                                <div class="flex gap-2 w-full sm:w-auto">
                                     <Tag :value="task.priority"
                                         :severity="task.priority === 'High' ? 'danger' : task.priority === 'Medium' ? 'warn' : 'success'" />
                                     <Button icon="pi pi-trash" severity="danger" text
                                         @click.stop="handleDeleteClick(task)" />
                                 </div>
                             </div>
-                            <p class="text-lg text-surface-600 mb-4">{{ task.description }}</p>
+                            <p class="text-base sm:text-lg text-surface-600 mb-4 break-words">{{ task.description }}</p>
                             <div class="text-xs text-surface-500">
                                 Due: {{ taskStore.formatDate(task.dueDate) }}
                             </div>
@@ -102,5 +101,25 @@ const handleCancelDelete = () => {
 
 .text-surface-500 {
     color: var(--surface-500);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+
+    .bg-surface-section {
+        margin-bottom: 1rem;
+    }
+
+    .space-y-3 {
+        min-height: 200px;
+    }
+}
+
+/* Ensure proper spacing on very small screens */
+@media screen and (max-width: 480px) {
+
+    .gap-2 {
+        gap: 0.5rem;
+    }
 }
 </style>

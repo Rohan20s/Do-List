@@ -29,28 +29,14 @@ const cardMenu = ref([
 
 <template>
     <div class="grid">
-        <div v-if="filteredTasks.length === 0" class="col-12 text-center p-4">
+        <div v-if="filteredTasks.length === 0" class="col-span-6 text-center p-4">
             <p class="text-gray-500">No tasks found</p>
         </div>
         <div v-else v-for="task in filteredTasks" :key="task.id" class="col-12 mb-4">
-            <Card>
+            <Card class="bg-surface-card rounded-lg shadow-sm">
                 <template #title>
                     <div class="flex items-center justify-between mb-0">
                         <h6 class="m-0 font-semibold">{{ task.title }}</h6>
-                        <div>
-                            <Button icon="pi pi-ellipsis-v" class="p-button-text p-button-plain p-button-rounded"
-                                @click="menuRef.toggle($event)"></Button>
-                            <Menu ref="menuRef" :model="cardMenu" :popup="true">
-                                <template #item="{ item, props }">
-                                    <a v-ripple
-                                        class="flex items-center cursor-pointer px-4 py-2 text-sm text-700 hover:surface-100 border-round"
-                                        v-bind="props.action" @click="item.command({ item, props: { task } })">
-                                        <i :class="item.icon" class="mr-2"></i>
-                                        <span>{{ item.label }}</span>
-                                    </a>
-                                </template>
-                            </Menu>
-                        </div>
                     </div>
                 </template>
 
@@ -61,9 +47,9 @@ const cardMenu = ref([
                                 :severity="task.priority === 'High' ? 'danger' : task.priority === 'Medium' ? 'warn' : 'success'" />
                             <Tag :value="taskStore.getStatusLabel(task.columnId)"
                                 :severity="taskStore.getStatusSeverity(task.columnId)" />
-                            <span class="text-surface-600">Due: {{ taskStore.formatDate(task.dueDate) }}</span>
+                            <span class="text-sm">Due: {{ taskStore.formatDate(task.dueDate) }}</span>
                         </div>
-                        <p class="text-surface-600 text-lg">{{ task.description }}</p>
+                        <p class="text-base sm:text-lg mb-4 break-words">{{ task.description }}</p>
                     </div>
                 </template>
             </Card>
