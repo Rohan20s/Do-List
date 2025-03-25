@@ -125,7 +125,7 @@ onUnmounted(() => {
 
 <template>
     <Dialog v-model:visible="dialogVisible" :header="isEdit ? 'Edit Task' : 'New Task'" modal class="p-fluid"
-        :style="{ width: '50vw' }" @hide="closeDialog">
+        :style="{ width: '90vw', maxWidth: '600px' }" @hide="closeDialog">
         <template #closeicon>
             <i class="pi pi-times" @click="closeDialog" />
         </template>
@@ -166,3 +166,13 @@ onUnmounted(() => {
         message="Are you sure you want to delete this task? This action cannot be undone." confirm-text="Delete"
         cancel-text="Cancel" @confirm="handleConfirmDelete" @cancel="handleCancelDelete" />
 </template>
+
+<style scoped>
+/* Responsive adjustments */
+@media screen and (min-width: 768px) {
+    :deep(.p-dialog) {
+        width: 50vw !important;
+        max-width: 800px;
+    }
+}
+</style>

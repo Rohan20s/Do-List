@@ -23,3 +23,17 @@ a {
 .layout-wrapper {
     min-height: 100vh;
 }
+
+.card {
+    background: var(--surface-card);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: var(--content-border-radius);
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .layout-wrapper .card {
+        padding: 1rem !important;
+    }
+}

@@ -1,3 +1,216 @@
-Sakai is an application template for Vue based on the [create-vue](https://github.com/vuejs/create-vue), the recommended way to start a Vite-powered Vue projects.
+# Do-List Task Management Application
 
-Visit the [documentation](https://sakai.primevue.org/documentation) to get started.
+A modern, responsive task management application built with Vue 3 and PrimeVue, featuring a Kanban board interface and real-time task management capabilities.
+
+## 🚀 Features
+
+### Core Features
+- **Kanban Board Interface**
+  - Drag and drop task management
+  - Three columns: Not Started, Working, Completed
+  - Real-time task status updates
+  - Visual task cards with priority indicators
+
+- **Task Management**
+  - Create, edit, and delete tasks
+  - Set task priorities (High, Medium, Low)
+  - Add due dates and descriptions
+  - Search functionality for tasks
+  - Task filtering by status and priority
+
+- **Responsive Design**
+  - Mobile-first approach
+  - Adaptive layouts for all screen sizes
+  - Touch-friendly interface
+  - Responsive Kanban board with horizontal scrolling on mobile
+
+- **User Interface**
+  - Modern and clean design
+  - Dark/Light theme support
+  - Loading animations
+  - Interactive components
+  - Toast notifications for actions
+
+### Additional Features
+- **Task Statistics**
+  - Real-time completion rates
+  - Priority-based task distribution
+  - Visual progress indicators
+  - Task count by status
+
+- **Demo & Documentation**
+  - Interactive demo video
+  - Comprehensive documentation
+  - Getting started guide
+  - Component examples
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Vue 3** - Progressive JavaScript Framework
+- **Vite** - Next Generation Frontend Tooling
+- **Pinia** - State Management
+- **PrimeVue** - Comprehensive Component Suite
+- **SCSS** - Advanced CSS Preprocessor
+- **Vue Router** - Official router for Vue.js
+
+### UI Components (PrimeVue)
+- Dialog
+- Button
+- InputText
+- Dropdown
+- Calendar
+- Toast
+- Card
+- ProgressBar
+- Avatar
+- Menu
+- Sidebar
+- DataTable
+- Tree
+- TreeTable
+- Chart
+- Timeline
+- Tag
+- Badge
+- Tooltip
+- ScrollPanel
+- ScrollTop
+- Toast
+- ConfirmDialog
+- ConfirmationService
+- MessageService
+
+## 📦 Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/do-list.git
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Build for production:
+```bash
+npm run build
+```
+
+## 🎯 Challenges & Solutions
+
+### 1. Responsive Kanban Board
+**Challenge**: Creating a responsive Kanban board that works well on all screen sizes while maintaining drag-and-drop functionality.
+
+**Solution**: 
+- Implemented a horizontal scrolling container for mobile
+- Used CSS Grid and Flexbox for layout
+- Added touch event handling for mobile devices
+- Created adaptive card sizes based on screen width
+
+### 2. State Management
+**Challenge**: Managing complex task state and real-time updates across components.
+
+**Solution**:
+- Implemented Pinia store for centralized state management
+- Created computed properties for filtered and grouped tasks
+- Used reactive references for real-time updates
+- Implemented optimistic updates for better UX
+
+### 3. Performance Optimization
+**Challenge**: Maintaining smooth performance with large task lists and frequent updates.
+
+**Solution**:
+- Implemented virtual scrolling for large lists
+- Used computed properties for derived data
+- Optimized re-renders with proper component structure
+- Implemented debouncing for search functionality
+
+### 4. Theme Implementation
+**Challenge**: Creating a consistent theme system that works across all components.
+
+**Solution**:
+- Created a custom SCSS theme system
+- Used CSS variables for dynamic theming
+- Implemented theme switching with smooth transitions
+- Created reusable mixins for common styles
+
+## 📚 Documentation
+
+### Component Structure
+```
+src/
+├── components/
+│   ├── dashboard/
+│   │   ├── TaskWidget.vue
+│   │   ├── TaskHighlightsWidget.vue
+│   │   ├── TaskDialog.vue
+│   │   ├── DemoWidget.vue
+│   │   └── VideoDialog.vue
+│   ├── layout/
+│   │   ├── AppHeader.vue
+│   │   ├── AppFooter.vue
+│   │   └── AppMenu.vue
+│   └── common/
+│       └── LoadingPage.vue
+├── stores/
+│   └── useTaskStore.js
+├── router/
+│   └── index.js
+└── assets/
+    ├── styles/
+    │   └── _variables.scss
+    └── video/
+        └── demo.mp4
+```
+
+### Key Components
+
+#### TaskWidget.vue
+- Main Kanban board component
+- Handles drag and drop functionality
+- Manages task filtering and display
+- Responsive layout implementation
+
+#### TaskDialog.vue
+- Task creation and editing interface
+- Form validation
+- Date picker integration
+- Priority selection
+
+#### TaskHighlightsWidget.vue
+- Real-time task statistics
+- Progress visualization
+- Priority-based task distribution
+
+## 🔗 Resources
+
+- [PrimeVue Documentation](https://primevue.org/)
+- [Vue 3 Documentation](https://v3.vuejs.org/)
+- [Vite Documentation](https://vitejs.dev/)
+- [Pinia Documentation](https://pinia.vuejs.org/)
+- [YouTube Channel](https://www.youtube.com/channel/UCTgmp69aBOlLnPEqlUyetWw)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- PrimeVue team for the excellent component library
+- Vue.js team for the amazing framework
+- All contributors and supporters
+
+## 📞 Support
+
+For support, please open an issue in the GitHub repository or contact the maintainers.

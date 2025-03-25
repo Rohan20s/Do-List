@@ -1,3 +1,14 @@
+<script setup>
+import LoginDialog from '@/components/auth/LoginDialog.vue';
+import { ref } from 'vue';
+
+const loginDialog = ref(null);
+
+const showLoginDialog = () => {
+    loginDialog.value.show();
+};
+</script>
+
 <template>
     <div class="card">
         <div class="font-semibold text-xl mb-4">Profile</div>
@@ -11,11 +22,15 @@
                 </div>
             </div>
             <div class="flex justify-end mt-4">
-                <Button label="Login" severity="primary" />
-
-                <!-- <Button label="Danger" severity="danger" /> -->
-                <!-- <Skeleton width="4rem" height="2rem"></Skeleton> -->
+                <Button label="Login" severity="primary" @click="showLoginDialog" />
             </div>
         </div>
+        <LoginDialog ref="loginDialog" />
     </div>
 </template>
+
+<style scoped>
+.text-muted-color {
+    color: var(--surface-600);
+}
+</style>
