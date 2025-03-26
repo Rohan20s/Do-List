@@ -23,10 +23,10 @@ const downloadGuide = () => {
         <div class="w-full flex justify-between align-center">
             <div class="flex items-center gap-2">
                 <Button icon="pi pi-play" severity="success" text rounded aria-label="Play" @click="showVideo = true" />
-                <span class="text-primary font-medium cursor-pointer" @click="showVideo = true">View Demo Video</span>
+                <span class="text-primary font-medium cursor-pointer" @click="showVideo = true">Demo</span>
             </div>
             <div class="flex items-center gap-2">
-                <span class="text-primary font-medium cursor-pointer" @click="downloadGuide">View Documentation</span>
+                <span class="text-primary font-medium cursor-pointer" @click="downloadGuide">Documentation</span>
                 <Button icon="pi pi-file" severity="info" text rounded aria-label="Documentation"
                     @click="downloadGuide" />
             </div>
