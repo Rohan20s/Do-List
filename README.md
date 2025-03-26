@@ -197,20 +197,9 @@ src/
 - [Pinia Documentation](https://pinia.vuejs.org/)
 - [YouTube Channel](https://www.youtube.com/channel/UCTgmp69aBOlLnPEqlUyetWw)
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - PrimeVue team for the excellent component library
 - Vue.js team for the amazing framework
 - All contributors and supporters
 
-## 📞 Support
-
-For support, please open an issue in the GitHub repository or contact the maintainers.
